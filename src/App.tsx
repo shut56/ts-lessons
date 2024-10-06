@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { getCurrentTime, user } from './consts';
+import { DateViewer } from './components/date-viewer';
+import { Card } from './components/card/Card';
 
 function App() {
+  const count = user.name + 10;
+  const [time, setTime] = useState(getCurrentTime());
+
+  const clickHandler = () => {
+    setTime(getCurrentTime());
+  };
+
   return (
     <div className="App">
       <header className="App-header">
@@ -18,6 +28,13 @@ function App() {
         >
           Learn React
         </a>
+        <div>{count}</div>
+        <DateViewer description="Current date">Pepe the Frog</DateViewer>
+        <Card />
+        <Card>Current time: {time}</Card>
+        <button type="button" onClick={clickHandler}>
+          Get current time
+        </button>
       </header>
     </div>
   );
